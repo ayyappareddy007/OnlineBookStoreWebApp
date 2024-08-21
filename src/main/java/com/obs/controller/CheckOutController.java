@@ -20,22 +20,15 @@ import com.obs.model.CartModel;
 import com.obs.model.OrderModel;
 import com.obs.model.UserModel;
 
-/**
- * Servlet implementation class CheckOutController
- */
+
 @WebServlet("/check-out")
 public class CheckOutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		response.setContentType("text/html;charset=UTF-8");
 		try(PrintWriter out = response.getWriter()){
-			
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
-            
 			HttpSession session = request.getSession();
 			UserModel user = (UserModel)session.getAttribute("user");
 			if(user != null) {
@@ -67,7 +60,6 @@ public class CheckOutController extends HttpServlet {
 			// TODO: handle exception
 			e.getMessage();
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

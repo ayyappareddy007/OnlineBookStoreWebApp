@@ -33,12 +33,9 @@ public class OrderDetailsController extends HttpServlet {
 				session.setAttribute("single-order", order);
 				session.setAttribute("order-details", order_Details);
 				response.sendRedirect("OrderDetails.jsp");
-				
 			}else {
 				response.sendRedirect("Login.jsp");
 			}
-			
-			
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.getMessage();
@@ -50,5 +47,4 @@ public class OrderDetailsController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

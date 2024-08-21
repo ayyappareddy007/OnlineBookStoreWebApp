@@ -17,9 +17,6 @@ import com.obs.model.CartModel;
 @WebServlet("/add-cart")
 public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try(PrintWriter out = response.getWriter();){
@@ -28,10 +25,8 @@ public class CartController extends HttpServlet {
 			CartModel cart = new CartModel();
 			cart.setId(id);
 			cart.setQuantity(1);
-			
 			HttpSession session = request.getSession();
 			ArrayList<CartModel> cart_list = (ArrayList<CartModel>)session.getAttribute("cart-list");
-			
 			if(cart_list == null) {
 				cartList.add(cart);
 				session.setAttribute("cart-list", cartList);

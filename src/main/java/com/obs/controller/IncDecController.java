@@ -13,13 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import com.obs.model.CartModel;
 
-/**
- * Servlet implementation class IncDecController
- */
+
 @WebServlet("/inc-dec")
 public class IncDecController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -59,5 +56,4 @@ public class IncDecController extends HttpServlet {
 			
 		}
 	}
-
 }

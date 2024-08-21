@@ -21,24 +21,19 @@ import com.obs.model.CartModel;
 import com.obs.model.OrderModel;
 import com.obs.model.UserModel;
 
-/**
- * Servlet implementation class BuyNowController
- */
+
 @WebServlet("/buy-now")
 public class BuyNowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		try(PrintWriter out = response.getWriter()){
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
-            
             UserModel user = (UserModel)request.getSession().getAttribute("user");
             if(user != null) {
             	int book_id = Integer.parseInt(request.getParameter("id"));
             	int quantity = Integer.parseInt(request.getParameter("quantity"));
-//            	System.out.print(quantity);
             	if(quantity < 1) {
             		quantity = 1;
             	}
@@ -48,19 +43,9 @@ public class BuyNowController extends HttpServlet {
             	orderModel.setId(book_id);
             	orderModel.setStatus("pending");
             	orderModel.setQuantity(quantity);
-//            	BookDao book = new BookDao();
-//            	List<BookModel> books = book.getBooks();
-//            	for(BookModel b:books) {
-//            		if(b.getId() == book_id) {
-//            			orderModel.setPrice(b.getPrice());
-//            			break;
-//            		}
-//            	}
-            	
             	BookDao book = new BookDao();
             	BookModel bk = book.getSingleBook(book_id);
             	orderModel.setPrice(bk.getPrice());
-            	
             	OrderDao oDao = new OrderDao();
             	int o_id = oDao.insertSingleOrder(orderModel);
             	orderModel.setO_id(o_id);
@@ -68,7 +53,6 @@ public class BuyNowController extends HttpServlet {
             	if(result) {
             		HttpSession session = request.getSession();
     				ArrayList<CartModel> cartList = (ArrayList<CartModel>)session.getAttribute("cart-list");
-    				
     				if(cartList != null) {
     					for(CartModel item:cartList) {
     						if(item.getId() == book_id) {

@@ -14,8 +14,6 @@ import com.obs.model.UserModel;
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String name = request.getParameter("name");
@@ -32,12 +30,10 @@ public class RegisterController extends HttpServlet {
 			System.out.println("Successfully registered");
 			request.setAttribute("registerMessage", "Successfully Registered.");
             request.getRequestDispatcher("Register.jsp").forward(request, response);
-//			response.sendRedirect("Login.jsp");
 		}
 		else{
 			request.setAttribute("registerError", "Registration failed. Please try again.");
             request.getRequestDispatcher("Register.jsp").forward(request, response);
 		}
 	}
-
 }
